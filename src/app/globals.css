@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f3f4f6;
+  --foreground: #111111;
+  --brand: #e10600;
+  --brand-hover: #c10500;
+  --header: #0a0a0c;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.prose-review {
+  --tw-prose-body: #3f3f46;
+  --tw-prose-headings: #09090b;
+  --tw-prose-links: var(--brand);
+  --tw-prose-bold: #18181b;
+  --tw-prose-quotes: #18181b;
+  --tw-prose-quote-borders: var(--brand);
+  --tw-prose-code: #18181b;
+}
+
+.prose-review blockquote {
+  border-left-width: 4px;
+  border-left-color: var(--brand);
+  background: #fff;
+  padding: 1rem 1.25rem;
+  font-style: normal;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.prose-review :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-size: 0.875em;
+  font-weight: 600;
+  background: #f4f4f5;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.prose-review :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))::before,
+.prose-review :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+  content: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 65s linear infinite;
+  will-change: transform;
+}
+
+.ticker-track-wrap:active .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ticker-track-wrap:hover .animate-marquee,
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
