@@ -1,5 +1,5 @@
 import { reviewReadingTime } from "@/lib/content/format";
-import type { ReviewLongform, ReviewTocItem } from "@/lib/content/types";
+import type { GalleryImage, ReviewLongform, ReviewTocItem } from "@/lib/content/types";
 
 export const DEFAULT_REVIEW_TOC: ReviewTocItem[] = [
   { id: "real-world-hook", label: "Real-World Hook" },
@@ -18,9 +18,10 @@ export function reviewToc(featureLabel: string, featureId = "headline-features")
 }
 
 export function buildReview(
-  review: Omit<ReviewLongform, "readingTime" | "toc"> & {
+  review: Omit<ReviewLongform, "readingTime" | "toc" | "gallery"> & {
     toc?: ReviewTocItem[];
     readingTime?: string;
+    gallery?: GalleryImage[];
   },
 ): ReviewLongform {
   const assembled: ReviewLongform = {

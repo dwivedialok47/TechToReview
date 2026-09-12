@@ -153,6 +153,7 @@ export const appleWatchUltra3Review = buildReview({
     Controls: "Action Button, crown, siren",
     Bands: "Alpine / Ocean / Trail with lock pins",
   },
+  gallery: [],
   toc: reviewToc("Battery, GPS & Dive", "headline-features"),
   score: 8.6,
 });
