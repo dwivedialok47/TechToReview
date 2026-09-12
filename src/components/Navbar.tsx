@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { Mail, Menu, Search, UserRound, X } from "lucide-react";
+import { Mail, Menu, Search, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TopTicker, TopTickerFallback } from "@/components/TopTicker";
 import { navCategories } from "@/lib/content/mock";
-import type { AuthUser, TickerHeadline, TrendingTopic } from "@/lib/content/types";
+import type { TickerHeadline, TrendingTopic } from "@/lib/content/types";
 
 function Logo() {
   return (
@@ -73,42 +73,6 @@ function SearchBar() {
   );
 }
 
-function AuthIndicator({ user }: { user: AuthUser | null }) {
-  if (user) {
-    const label = user.fullName ?? user.email ?? "Account";
-    return (
-      <Link
-        href="/account"
-        className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-2 py-1 text-sm text-zinc-100 transition-all hover:border-brand hover:text-white"
-      >
-        {user.avatarUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={user.avatarUrl}
-            alt=""
-            className="h-7 w-7 rounded-full object-cover"
-          />
-        ) : (
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand text-xs font-bold">
-            {label.slice(0, 1).toUpperCase()}
-          </span>
-        )}
-        <span className="hidden max-w-[9rem] truncate lg:inline">{label}</span>
-      </Link>
-    );
-  }
-
-  return (
-    <Link
-      href="/login"
-      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-zinc-950 transition-all hover:bg-brand hover:text-white"
-    >
-      <UserRound className="h-3.5 w-3.5" aria-hidden />
-      Sign in
-    </Link>
-  );
-}
-
 function TrendingBar({
   trending,
   dateLabel,
@@ -164,12 +128,10 @@ function TrendingBar({
 }
 
 export function Navbar({
-  user,
   headlines,
   trending,
   dateLabel,
 }: {
-  user: AuthUser | null;
   headlines: TickerHeadline[];
   trending: TrendingTopic[];
   dateLabel: string;
@@ -194,19 +156,19 @@ export function Navbar({
             ))}
           </nav>
 
-          <SearchBar />
-          <AuthIndicator user={user} />
-
-          <button
-            type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-zinc-700 lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
+          <div className="ml-auto flex min-w-0 flex-1 items-center justify-end gap-3">
+            <SearchBar />
+            <button
+              type="button"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-zinc-700 lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((value) => !value)}
+            >
+              {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
 
         {open ? (
