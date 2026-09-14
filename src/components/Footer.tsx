@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AtSign, Play, Rss, Share2, Users } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { navCategories } from "@/lib/content/mock";
 
 const aboutLinks = [
@@ -29,9 +30,7 @@ export function Footer() {
     <footer className="mt-16 border-t border-zinc-800 bg-header font-sans text-zinc-300">
       <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-lg font-black tracking-tight text-white">
-            TECH<span className="text-brand">TO</span>REVIEW
-          </p>
+          <Logo />
           <p className="mt-3 text-sm leading-relaxed text-zinc-400">
             Independent reviews, breaking gadget news, and buying guides from
             the TechToReview lab. We buy the products we test.

@@ -3,20 +3,11 @@
 import Link from "next/link";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Mail, Menu, Search, X } from "lucide-react";
+import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TopTicker, TopTickerFallback } from "@/components/TopTicker";
 import { navCategories } from "@/lib/content/mock";
 import type { TickerHeadline, TrendingTopic } from "@/lib/content/types";
-
-function Logo() {
-  return (
-    <Link href="/" className="shrink-0 font-sans text-lg font-black tracking-tight sm:text-xl">
-      TECH
-      <span className="text-brand">TO</span>
-      REVIEW
-    </Link>
-  );
-}
 
 function SearchBar() {
   const inputRef = useRef<HTMLInputElement>(null);
